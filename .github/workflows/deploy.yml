@@ -38,11 +38,11 @@ jobs:
       - name: ssh into Production Server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ variables.PRODUCTION_SERVER }}
-          username: ${{ variables.USER }}
+          host: ${{ vars.PRODUCTION_SERVER }}
+          username: ${{ vars.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            cd ${{ variables.PROJECT_PATH }}
+            cd ${{ vars.PROJECT_PATH }}
             git pull
             composer install
             php artisan optimize:clear
