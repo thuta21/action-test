@@ -41,7 +41,7 @@ jobs:
 
       - name: SSH into Production Server
         uses: appleboy/ssh-action@master
-        with:
+        env:
           host: ${{ vars.PRODUCTION_SERVER }}
           username: ${{ vars.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
