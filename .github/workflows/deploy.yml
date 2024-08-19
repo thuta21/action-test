@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: ssh into Production Server
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@0.1.4
         with:
           host: ${{ vars.PRODUCTION_SERVER }}
           username: ${{ vars.USER }}
