@@ -40,10 +40,10 @@ jobs:
         uses: actions/checkout@master
 
       - name: SSH into Production Server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ vars.PRODUCTION_SERVER }}
-          username: ${{ vars.USER }}
+          host: ${{ secrets.PRODUCTION_SERVER }}
+          username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ vars.PROJECT_PATH }}
