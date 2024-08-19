@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: SSH into Production Server
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PRODUCTION_SERVER }}
           username: ${{ secrets.USER }}
