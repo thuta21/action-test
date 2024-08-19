@@ -42,11 +42,11 @@ jobs:
       - name: SSH into Production Server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PRODUCTION_SERVER }}
-          username: ${{ secrets.USER }}
+          host: ${{ vars.PRODUCTION_SERVER }}
+          username: ${{ vars.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            cd ${{ secrets.PROJECT_PATH }}
+            cd ${{ vars.PROJECT_PATH }}
             git pull origin develop
             composer install --no-dev --optimize-autoloader
             php artisan optimize:clear
