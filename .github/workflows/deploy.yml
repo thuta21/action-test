@@ -1,5 +1,4 @@
 name: Deployment
-
 on:
   push:
     branches:
@@ -38,19 +37,15 @@ jobs:
     needs: test
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
 
-      - name: Add SSH Key
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: SSH into Production Server
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Test SSH Connection
-        run: ssh -v -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "echo SSH Connection Successful"
-
-      - name: SSH into Production Server and Deploy
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
             cd ${{ vars.PROJECT_PATH }}
             git pull origin develop
             composer install --no-dev --optimize-autoloader
@@ -58,4 +53,3 @@ jobs:
             php artisan migrate --force
             php artisan optimize
             echo "Deployment completed successfully"
-          EOF
