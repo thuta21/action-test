@@ -44,7 +44,7 @@ jobs:
         with:
           HOST: ${{ vars.PRODUCTION_SERVER }}
           USERNAME: ${{ vars.USER }}
-          KEY: ${{ secrets.PRIVATE_KEY }}
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ vars.PROJECT_PATH }}
             git pull origin develop
