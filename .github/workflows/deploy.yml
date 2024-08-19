@@ -41,10 +41,10 @@ jobs:
 
       - name: SSH into Production Server
         uses: appleboy/ssh-action@master
-        env:
-          host: ${{ vars.PRODUCTION_SERVER }}
-          username: ${{ vars.USER }}
-          key: ${{ secrets.PRIVATE_KEY }}
+        with:
+          HOST: ${{ vars.PRODUCTION_SERVER }}
+          USERNAME: ${{ vars.USER }}
+          KEY: ${{ secrets.PRIVATE_KEY }}
           script: |
             cd ${{ vars.PROJECT_PATH }}
             git pull origin develop
